@@ -19,7 +19,7 @@
         ]
       },
       {
-        "source": "static/@(js|css)/*.@(css|js)",
+        "source": "@(js|css)/*.@(js|css)",
         "headers": [
           {
             "key": "Cache-Control",
@@ -28,7 +28,7 @@
         ]
       },
       {
-        "source": "static/media/*.@(jpg|jpeg|gif|png)",
+        "source": "img/*.@(jpg|jpeg|gif|png)",
         "headers": [
           {
             "key": "Cache-Control",
