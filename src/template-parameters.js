@@ -1,8 +1,8 @@
 module.exports = {
-  'header': {
+  header: {
     title: 'header parameter',
   },
-  'footer': {
+  footer: {
     title: 'footer parameter',
   },
   '404': {

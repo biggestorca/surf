@@ -2,20 +2,18 @@ const webpack = require('webpack');
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const OpenBrowserPlugin = require('open-browser-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const templateParameters = require('./src/template-parameters.js');
+const generateHtmlPlugins = require('./generateHtmlPlugins.js');
+
+const htmlPlugins = generateHtmlPlugins('./src/views');
 
 module.exports = {
   devtool: 'source-map',
   mode: 'development',
-  entry: [
-    './src/js/index.js',
-    './src/css/style.css',
-  ],
+  entry: ['./src/js/index.js', './src/scss/style.scss'],
   output: {
     path: path.resolve(__dirname, 'public'),
-    filename: 'js/bundle.js',
+    filename: 'js/[name].[chunkhash].js',
   },
   optimization: {
     noEmitOnErrors: true,
@@ -29,8 +27,9 @@ module.exports = {
         use: ['babel-loader', 'eslint-loader'],
       },
       {
-        test: /\.css$/,
+        test: /\.(css|sass|scss)$/,
         use: [
+          'sass-loader',
           {
             loader: MiniCssExtractPlugin.loader,
           },
@@ -54,7 +53,7 @@ module.exports = {
       },
       {
         test: /\.html$/,
-        include: path.resolve(__dirname, 'src/views'),
+        include: path.resolve(__dirname, 'src/components'),
         use: ['raw-loader'],
       },
       {
@@ -101,7 +100,7 @@ module.exports = {
   plugins: [
     new webpack.LoaderOptionsPlugin({ options: {} }),
     new MiniCssExtractPlugin({
-      filename: 'css/style.css',
+      filename: 'css/[name].[chunkhash].css',
     }),
     new OpenBrowserPlugin({ url: 'http://localhost:9000' }),
     new CopyWebpackPlugin([
@@ -118,22 +117,5 @@ module.exports = {
         to: path.resolve(__dirname, 'public/'),
       },
     ]),
-    new HtmlWebpackPlugin({
-      inject: true,
-      template: path.resolve(__dirname, 'src/index.html'),
-      filename: path.resolve(__dirname, 'public/index.html'),
-    }),
-    new HtmlWebpackPlugin({
-      inject: true,
-      templateParameters,
-      template: path.resolve(__dirname, 'src/404.html'),
-      filename: path.resolve(__dirname, 'public/404.html'),
-    }),
-    new HtmlWebpackPlugin({
-      inject: true,
-      templateParameters,
-      template: path.resolve(__dirname, 'src/500.html'),
-      filename: path.resolve(__dirname, 'public/500.html'),
-    }),
-  ],
+  ].concat(htmlPlugins),
 };

@@ -1,19 +1,17 @@
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const templateParameters = require('./src/template-parameters.js');
+const generateHtmlPlugins = require('./generateHtmlPlugins.js');
+
+const htmlPlugins = generateHtmlPlugins('./src/views');
 
 module.exports = {
   mode: 'production',
-  entry: [
-    './src/js/index.js',
-    './src/css/style.css',
-  ],
+  entry: ['./src/js/index.js', './src/css/style.css'],
   output: {
     path: path.resolve(__dirname, 'public'),
-    filename: 'js/bundle.js',
+    filename: 'js/[name].[chunkhash].js',
   },
   stats: {
     colors: true,
@@ -31,8 +29,9 @@ module.exports = {
         use: ['babel-loader'],
       },
       {
-        test: /\.css$/,
+        test: /\.(css|sass|scss)$/,
         use: [
+          'sass-loader',
           {
             loader: MiniCssExtractPlugin.loader,
             options: {},
@@ -55,7 +54,7 @@ module.exports = {
       },
       {
         test: /\.html$/,
-        include: path.resolve(__dirname, 'src/views'),
+        include: path.resolve(__dirname, 'src/components'),
         use: ['raw-loader'],
       },
       {
@@ -85,7 +84,7 @@ module.exports = {
   plugins: [
     new ImageminPlugin({ test: /\.(jpe?g|png|gif|svg)$/i }),
     new MiniCssExtractPlugin({
-      filename: 'css/style.css',
+      filename: 'css/[name].[chunkhash].css',
     }),
     new CopyWebpackPlugin([
       {
@@ -101,22 +100,5 @@ module.exports = {
         to: path.resolve(__dirname, 'public/'),
       },
     ]),
-    new HtmlWebpackPlugin({
-      inject: true,
-      template: path.resolve(__dirname, 'src/index.html'),
-      filename: path.resolve(__dirname, 'public/index.html'),
-    }),
-    new HtmlWebpackPlugin({
-      inject: true,
-      templateParameters,
-      template: path.resolve(__dirname, 'src/404.html'),
-      filename: path.resolve(__dirname, 'public/404.html'),
-    }),
-    new HtmlWebpackPlugin({
-      inject: true,
-      templateParameters,
-      template: path.resolve(__dirname, 'src/500.html'),
-      filename: path.resolve(__dirname, 'public/500.html'),
-    }),
-  ],
+  ].concat(htmlPlugins),
 };

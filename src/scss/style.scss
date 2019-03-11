@@ -1,6 +1,6 @@
 @import 'normalize.css'; /* from node_modules */
-@import 'media.css';
-@import 'fonts.css';
+@import 'media.scss';
+@import 'fonts.scss';
 
 html {
   font-family: 'MuseoSans', sans-serif;
@@ -8,6 +8,7 @@ html {
 
 body {
   display: flex;
+  flex-direction: column;
   @media (--xs-only) {
     border: 5px solid yellow;
   }
@@ -25,13 +26,17 @@ body {
   }
 }
 
-.background {
-  height: 200px;
-  background-image: url('~/img/photo.jpg');
-}
-
 img {
   display: block;
   max-width: 100%;
   height: auto;
+}
+
+.nav__link {
+  font-size: 16px;
+  color: gray;
+  &--active {
+    font-size: 20px;
+    color: crimson;
+  }
 }
