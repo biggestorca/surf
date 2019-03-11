@@ -8,7 +8,7 @@ const htmlPlugins = generateHtmlPlugins('./src/views');
 
 module.exports = {
   mode: 'production',
-  entry: ['./src/js/index.js', './src/css/style.css'],
+  entry: ['./src/js/index.js', './src/scss/style.scss'],
   output: {
     path: path.resolve(__dirname, 'public'),
     filename: 'js/[name].[chunkhash].js',
