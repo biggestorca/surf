@@ -1,6 +1,16 @@
-@import 'normalize.css'; /* from node_modules */
+@import '_custom.scss';
+/* from node_modules */
+@import '~bootstrap/scss/bootstrap';
+@import 'normalize.css';
+
+/* custom */
+@import 'variables.scss';
 @import 'media.scss';
 @import 'fonts.scss';
+
+/* components */
+@import 'header.scss';
+@import 'footer.scss';
 
 html {
   font-family: 'MuseoSans', sans-serif;
@@ -9,34 +19,12 @@ html {
 body {
   display: flex;
   flex-direction: column;
-  @media (--xs-only) {
-    border: 5px solid yellow;
-  }
-
-  @media (--sm-only) {
-    border: 5px solid aqua;
-  }
-
-  @media (--md-only) {
-    border: 5px solid blue;
-  }
-
-  @media (--lg-only) {
-    border: 5px solid violet;
+  height: 100vh;
+  main {
+    flex: 1 0 auto;
   }
 }
 
-img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
-
-.nav__link {
-  font-size: 16px;
-  color: gray;
-  &--active {
-    font-size: 20px;
-    color: crimson;
-  }
+.main-info {
+  margin-top: 40px;
 }
