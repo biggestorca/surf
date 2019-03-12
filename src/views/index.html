@@ -1,30 +1,22 @@
 <% var tempParameters = require('../template-parameters.js') %>
-<!DOCTYPE html>
-<html>
-  <head>
-    <%= _.template(require('../components/head.html'))(tempParameters.index) %>
-  </head>
-
-  <body>
-    <%= _.template(require('../components/header.html'))(tempParameters) %>
-    <main>
-      <div class="container-fluid">
-        <h1>
-          Webpack starter
-        </h1>
-        <small class="text-muted">
-          Простой способ начать разрабатывать сайты
-        </small>
-        <p class="text-left main-info">
-          Заготовка создана для легкого старта и разработки маленьких и сердних
-          веб сайтов.
-          <br />
-          По умолчанию используется bootstrap v4, SCSS.
-          <br />
-          Сборка с помощью webpack v4.
-        </p>
-      </div>
-    </main>
-    <%= _.template(require('../components/footer.html'))(tempParameters) %>
-  </body>
-</html>
+<%= _.template(require('../components/head.html'))(tempParameters.index) %> 
+<%= _.template(require('../components/header.html'))(tempParameters) %>
+<main>
+  <div class="container-fluid">
+    <h1>
+      Webpack starter
+    </h1>
+    <small class="text-muted">
+      Простой способ начать разрабатывать сайты
+    </small>
+    <p class="text-left main-info">
+      Заготовка создана для легкого старта и разработки маленьких и сердних веб
+      сайтов.
+      <br />
+      По умолчанию используется bootstrap v4, SCSS.
+      <br />
+      Сборка с помощью webpack v4.
+    </p>
+  </div>
+</main>
+<%= _.template(require('../components/footer.html'))(tempParameters) %>

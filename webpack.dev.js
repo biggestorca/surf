@@ -117,6 +117,18 @@ module.exports = {
         from: path.resolve(__dirname, 'src/favicon.ico'),
         to: path.resolve(__dirname, 'public/'),
       },
+      {
+        from: path.resolve(__dirname, 'src/robots.txt'),
+        to: path.resolve(__dirname, 'public/'),
+      },
+      {
+        from: path.resolve(__dirname, 'src/pwa/manifest.json'),
+        to: path.resolve(__dirname, 'public/'),
+      },
+      {
+        from: path.resolve(__dirname, 'src/pwa/pwabuilder-sw.js'),
+        to: path.resolve(__dirname, 'public/'),
+      },
     ]),
   ].concat(htmlPlugins),
 };
