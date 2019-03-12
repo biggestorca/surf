@@ -1,11 +1,11 @@
 module.exports = {
-  header: {
-    title: 'header parameter',
+  index: {
+    title: 'Orca webpack starter',
   },
-  footer: {
-    title: 'footer parameter',
+  about: {
+    title: 'Orca webpack starter - About',
   },
   '404': {
-    title: 'Not Found',
+    title: 'Orca webpack starter - Not Found',
   },
 };
