@@ -1,7 +1,7 @@
 {
-  "name": "Webpack-starter",
+  "name": "Surf",
   "version": "0.0.1",
-  "description": "Webpack starter",
+  "description": "Orca surf landing sources",
   "license": "MIT",
   "author": "Big Orca <imma.big.orca@gmail.com>",
   "scripts": {
@@ -10,13 +10,10 @@
     "fix": "yarn eslint:--fix && yarn stylelint:--fix",
     "start": "webpack-dev-server --config webpack.dev.js",
     "stylelint:--fix": "stylelint ./**/*.css !./public/**/*.css --fix",
-    "deploy": "webpack --config webpack.prod.js && firebase deploy"
+    "deploy": "rm -rf public && mkdir public && webpack --config webpack.prod.js && firebase deploy"
   },
   "dependencies": {
-    "bootstrap": "^4.3.1",
-    "jquery": "^3.3.1",
-    "normalize.css": "^8.0.0",
-    "popper.js": "^1.14.7"
+    "normalize.css": "^8.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-rc.4",

@@ -1,5 +1,6 @@
 {
   "projects": {
-    "staging": "orca-webpack-starter"
+    "staging": "orca-surf",
+    "default": "orca-surf"
   }
 }

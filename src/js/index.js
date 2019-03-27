@@ -1,6 +1,3 @@
-import 'jquery';
-import 'bootstrap';
-
 import registerServiceWorker from './registerServiceWorker';
 import navigatorStyling from './nav';
 

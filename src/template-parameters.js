@@ -1,14 +1,10 @@
 module.exports = {
   index: {
-    title: 'Orca webpack starter',
-    description: 'Orca webpack starter boilerplate',
-  },
-  contacts: {
-    title: 'Orca webpack starter - Contacts',
-    description: 'Orca webpack starter boilerplate',
+    title: 'Surf',
+    description: 'Surf',
   },
   '404': {
-    title: 'Orca webpack starter - Not Found',
-    description: 'Orca webpack starter boilerplate',
+    title: 'Surf - Not Found',
+    description: 'Surf',
   },
 };
