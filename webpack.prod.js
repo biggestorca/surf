@@ -97,10 +97,6 @@ module.exports = {
         to: path.resolve(__dirname, 'public/img'),
       },
       {
-        from: path.resolve(__dirname, 'src/favicon.ico'),
-        to: path.resolve(__dirname, 'public/'),
-      },
-      {
         from: path.resolve(__dirname, 'src/robots.txt'),
         to: path.resolve(__dirname, 'public/'),
       },
