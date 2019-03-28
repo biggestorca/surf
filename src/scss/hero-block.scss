@@ -1,13 +1,11 @@
 .hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   height: 80px;
   font-size: $f-lg;
   font-weight: 800;
   text-transform: uppercase;
-
-  &--lg {
-    height: 191px;
-    font-size: 60px;
-  }
 
   &--s {
     height: 64px;

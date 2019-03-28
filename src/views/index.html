@@ -1,21 +1,98 @@
-<% var tempParameters = require('../template-parameters.js') %> <%=
-_.template(require('../components/head.html'))(tempParameters.index) %>
+<% var tempParameters = require('../template-parameters.js') %>
+<%=_.template(require('../components/head.html'))(tempParameters.index) %>
 <main>
-  <div class="hero">
-    go
-    <span
-      >surf <%= _.template(require('../components/next-svg.html'))({}) %></span
-    >
+  <div class="first-screen" id="first-screen">
+    <%= _.template(require('../components/header.html'))({ nav: { surf:
+    require('../components/nav-surf.html'), travel:
+    require('../components/nav-travel.html'), sleep:
+    require('../components/nav-sleep.html'), shop:
+    require('../components/nav-shop.html'), } }) %>
   </div>
-  <div class="hero hero--s">
-    go
-    <span
-      >surf <%= _.template(require('../components/next-svg.html'))({}) %></span
-    >
-  </div>
-  <div class="hero hero--lg">
-    go
-    <span>surf</span>
-  </div>
+  <section>
+    <div class="hero">
+      go
+      <span
+        >surf <%= _.template(require('../components/next-svg.html'))({})
+        %></span
+      >
+    </div>
+    <div class="hero hero--s">
+      go
+      <span
+        >surf <%= _.template(require('../components/next-svg.html'))({})
+        %></span
+      >
+    </div>
+    <div class="hero">
+      go
+      <span
+        >surf <%= _.template(require('../components/next-svg.html'))({})
+        %></span
+      >
+    </div>
+    <div class="hero hero--s">
+      go
+      <span
+        >surf <%= _.template(require('../components/next-svg.html'))({})
+        %></span
+      >
+    </div>
+    <div class="hero">
+      go
+      <span
+        >surf <%= _.template(require('../components/next-svg.html'))({})
+        %></span
+      >
+    </div>
+    <div class="hero hero--s">
+      go
+      <span
+        >surf <%= _.template(require('../components/next-svg.html'))({})
+        %></span
+      >
+    </div>
+    <div class="hero">
+      go
+      <span
+        >surf <%= _.template(require('../components/next-svg.html'))({})
+        %></span
+      >
+    </div>
+    <div class="hero hero--s">
+      go
+      <span
+        >surf <%= _.template(require('../components/next-svg.html'))({})
+        %></span
+      >
+    </div>
+    <div class="hero">
+      go
+      <span
+        >surf <%= _.template(require('../components/next-svg.html'))({})
+        %></span
+      >
+    </div>
+    <div class="hero hero--s">
+      go
+      <span
+        >surf <%= _.template(require('../components/next-svg.html'))({})
+        %></span
+      >
+    </div>
+    <div class="hero">
+      go
+      <span
+        >surf <%= _.template(require('../components/next-svg.html'))({})
+        %></span
+      >
+    </div>
+    <div class="hero hero--s">
+      go
+      <span
+        >surf <%= _.template(require('../components/next-svg.html'))({})
+        %></span
+      >
+    </div>
+  </section>
 </main>
 <%= _.template(require('../components/footer.html'))(tempParameters) %>
