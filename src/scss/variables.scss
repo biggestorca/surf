@@ -1,2 +1,26 @@
 $header-height: 66px;
 $footer-height: 100px;
+
+$primary: #171919;
+$secondary: #4af6cd;
+$secondary--light: transparentize(#4af6cd, 0.84);
+$secondary--lighter: transparentize(#4af6cd, 0.54);
+$secondary--dark: transparentize(#385551, 0.37);
+$gray: #d8d8d8;
+$gray--light: #dadada;
+$gray--lighter: #f2f2f2;
+$gray--dark: #979797;
+$gray--darker: #323232;
+
+$f-xx-sm: 10px;
+$f-x-sm: 12px;
+$f-sm: 14px;
+
+$f-normal: 16px;
+
+$f-md: 18px;
+$f-x-md: 22px;
+$f-xx-md: 24px;
+
+$f-lf: 40px;
+$f-x-lf: 80px;
