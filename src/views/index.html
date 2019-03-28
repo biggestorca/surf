@@ -2,6 +2,21 @@
 _.template(require('../components/head.html'))(tempParameters.index) %> <%=
 _.template(require('../components/header.html'))(tempParameters) %>
 <main>
-  body
+  <div class="hero">
+    go
+    <span
+      >surf <%= _.template(require('../components/next-svg.html'))({}) %></span
+    >
+  </div>
+  <div class="hero hero--s">
+    go
+    <span
+      >surf <%= _.template(require('../components/next-svg.html'))({}) %></span
+    >
+  </div>
+  <div class="hero hero--lg">
+    go
+    <span>surf</span>
+  </div>
 </main>
 <%= _.template(require('../components/footer.html'))(tempParameters) %>

@@ -1,0 +1,42 @@
+.hero {
+  height: 80px;
+  font-size: $f-lg;
+  font-weight: 800;
+  text-transform: uppercase;
+
+  &--lg {
+    height: 191px;
+    font-size: 60px;
+  }
+
+  &--s {
+    height: 64px;
+    font-size: 32px;
+  }
+
+  span {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    padding: 17px;
+    margin-left: 18px;
+    background: $secondary;
+
+    svg {
+      margin-left: 17px;
+    }
+
+    &::before {
+      position: absolute;
+      top: 50%;
+      left: -10px;
+      width: 20px;
+      height: 1px;
+      content: '';
+      background: #fff;
+      transform: translate(0, -50%);
+    }
+  }
+}
