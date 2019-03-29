@@ -1,11 +1,22 @@
 .first-screen {
   position: relative;
   z-index: 1;
-  height: 100vh;
-  min-height: 1024px;
   background: transparent url('/img/Surf_The_Wave.jpg') 0 0 no-repeat;
   background-attachment: fixed;
   background-size: cover;
+
+  &.small {
+    min-height: 1024px;
+
+    .header {
+      min-height: 1024px;
+    }
+  }
+
+  &.all-screen-height {
+    height: 100vh;
+    min-height: 100vh;
+  }
 
   &::after {
     position: absolute;

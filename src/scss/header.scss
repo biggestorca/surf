@@ -82,8 +82,16 @@
       margin-top: 6px;
       font-weight: 300;
     }
+  }
 
-    .month {
-    }
+  .geolocation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 69px;
+    margin-top: 29px;
+    font-size: $f-x-sm;
+    line-height: 14px;
+    letter-spacing: 1.05px;
   }
 }
