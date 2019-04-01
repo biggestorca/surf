@@ -1,6 +1,7 @@
 .first-screen {
   position: relative;
   z-index: 1;
+  padding-left: 169px;
   background: transparent url('/img/Surf_The_Wave.jpg') 0 0 no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -40,8 +41,30 @@
       );
   }
 
-  .header {
-    position: relative;
+  @keyframes a {
+    from {
+      bottom: 43px;
+    }
+
+    50% {
+      bottom: 33px;
+    }
+
+    to {
+      bottom: 43px;
+    }
+  }
+
+  .go-to-surf {
+    position: absolute;
+    bottom: 33px;
+    left: 199px;
     z-index: 3;
+    width: 40px;
+    height: 40px;
+    font-size: 0;
+    color: transparent;
+    background: transparent url('/img/icons/Down_Arrows.svg') 10px 8px no-repeat;
+    animation: a 2.75s infinite ease-in-out;
   }
 }

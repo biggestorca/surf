@@ -42,11 +42,23 @@ const getUserGeolocation = () => {
   });
 };
 
+// const goToSurfPos = () => {
+//   const $firstScreen = document.getElementById('first-screen');
+//   const $goToSurf = document.getElementById('go-to-surf');
+
+//   $goToSurf.style.top = `${window.innerHeight - 40}px`;
+
+//   $firstScreen.addEventListener('resize', () => {
+//     $goToSurf.style.top = `${window.innerHeight - 40}px`;
+//   });
+// };
+
 const firstScreen = () =>
   document.addEventListener('DOMContentLoaded', () => {
     const $firstScreen = document.getElementById('first-screen');
     computedHeight($firstScreen);
     getUserGeolocation();
+    // goToSurfPos();
   });
 
 export default firstScreen;
