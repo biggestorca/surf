@@ -1,12 +1,16 @@
 <% var tempParameters = require('../template-parameters.js') %>
 <%=_.template(require('../components/head.html'))(tempParameters.index) %>
 <main>
-  <div class="first-screen" id="first-screen">
+  <section class="first-screen" id="first-screen">
     <%= _.template(require('../components/header.html'))({ nav: { surf:
     require('../components/nav-surf.html'), travel:
     require('../components/nav-travel.html'), sleep:
     require('../components/nav-sleep.html'), shop:
     require('../components/nav-shop.html'), } }) %>
-  </div>
+  </section>
+  <section class="section surf" id="surf">Surf</section>
+  <section class="section travel" id="travel">Travel</section>
+  <section class="section sleep" id="sleep">Sleep</section>
+  <section class="section shop" id="shop">Shop</section>
 </main>
 <%= _.template(require('../components/footer.html'))(tempParameters) %>

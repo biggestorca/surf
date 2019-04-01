@@ -1,4 +1,5 @@
 import registerServiceWorker from './registerServiceWorker';
+import smoothScrollToAnchor from './smoothScrollToAnchor';
 import headerDatetime from './headerDatetime';
 import firstScreen from './firstScreen';
 
@@ -9,5 +10,7 @@ if (env === 'production') {
 } else {
   console.log(`NODE_ENV is: '${env}', servise worker DISABLED.`);
 }
+
+smoothScrollToAnchor();
 firstScreen();
 headerDatetime();
