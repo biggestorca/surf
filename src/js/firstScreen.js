@@ -97,6 +97,7 @@ class FirstScreenSlider extends Slider {
     const wrapper = document.createElement('div');
     wrapper.classList.add('slider__location-wrapper');
 
+    // TODO: rewrite to forEach loop
     // eslint-disable-next-line no-plusplus
     for (let i = 0; i < this.payload.length; i++) {
       const item = document.createElement('div');
