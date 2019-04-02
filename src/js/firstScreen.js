@@ -5,25 +5,37 @@ const ES6Promise = require('es6-promise');
 
 ES6Promise.polyfill();
 
+// TODO: fix isNaN for IE
+function customIsNaN(o) {
+  if (Number.isNaN) {
+    return Number.isNaN(o);
+  }
+  return typeof o === 'number';
+}
+
 const payload = [
   {
     id: 0,
     name: 'North Shore',
+    hash: 'north-shore',
     condition: 'Radical',
   },
   {
     id: 1,
     name: 'South Shore',
+    hash: 'south-shore',
     condition: 'Conservative',
   },
   {
     id: 2,
     name: 'West Shore',
+    hash: 'west-shore',
     condition: 'Radical',
   },
   {
     id: 3,
     name: 'East Shore',
+    hash: 'east-shore',
     condition: 'Conservative',
   },
 ];
@@ -54,6 +66,8 @@ const computedHeight = (element) => {
 const isIE = () =>
   window.navigator.userAgent.indexOf('MSIE') !== -1 || !!document.documentMode === true;
 
+const isEDGE = () => /Edge/.test(window.navigator.userAgent);
+
 const getUserGeolocation = () => {
   const $element = document.getElementById('geolocation');
   const $cityEl = $element.querySelector('.city');
@@ -71,7 +85,6 @@ class FirstScreenSlider extends Slider {
   constructor(mainEl, data) {
     super(mainEl, data);
     this.generateLocations();
-    this.updateView();
   }
 
   updateView() {
@@ -101,6 +114,94 @@ class FirstScreenSlider extends Slider {
         item.classList.remove('slider__location-item--active');
       }
     });
+    this.buildPath();
+  }
+
+  buildPath() {
+    // TODO: fix isNaN for IE
+    if (typeof this.prevActiveItem === 'number') {
+      const oldSvg = this.mainElement.querySelector(`#svg-path-${this.payload[this.prevActiveItem].hash}`);
+
+      if (isIE()) {
+        let classList = oldSvg.getAttribute('class').split(' ');
+        classList = classList.filter(className => className !== 'svg-path-active');
+        oldSvg.setAttribute('class', classList.join(' '));
+      } else {
+        oldSvg.classList.remove('svg-path-active');
+      }
+    }
+
+    const { hash } = this.payload[this.activeItem];
+    const svg = this.mainElement.querySelector(`#svg-path-${hash}`);
+    if (isIE()) {
+      const classList = svg.getAttribute('class');
+      svg.setAttribute('class', `${classList} svg-path-active`);
+    } else {
+      svg.classList.add('svg-path-active');
+    }
+
+    const svgLine = svg.querySelector('path');
+    const svgDestination = this.mainElement.querySelector(`#svg-destination-${hash}`);
+
+    const disactivateDestination = (elem) => {
+      elem.setAttribute('width', '6');
+      elem.setAttribute('height', '6');
+      elem.setAttribute('viewBox', '0 0 6 6');
+      const newDestinationPath = elem.querySelector('path');
+      newDestinationPath.setAttribute(
+        'd',
+        'M3 6C4.65685 6 6 4.65685 6 3C6 1.34315 4.65685 0 3 0C1.34315 0 0 1.34315 0 3C0 4.65685 1.34315 6 3 6Z',
+      );
+    };
+
+    const activateDestination = (elem) => {
+      elem.setAttribute('width', '13');
+      elem.setAttribute('height', '13');
+      elem.setAttribute('viewBox', '0 0 13 13');
+      const newDestinationPath = elem.querySelector('path');
+      newDestinationPath.setAttribute(
+        'd',
+        'M6.5 13C10.0899 13 13 10.0899 13 6.5C13 2.91015 10.0899 0 6.5 0C2.91015 0 0 2.91015 0 6.5C0 10.0899 2.91015 13 6.5 13Z',
+      );
+    };
+
+    const createAnim = (len) => {
+      const animate = document.createElementNS('http://www.w3.org/2000/svg', 'animate');
+
+      animate.setAttribute('attributeName', 'stroke-dashoffset');
+      animate.setAttribute('begin', 'indefinite');
+      animate.setAttribute('dur', '2s');
+      animate.setAttribute('repeatCount', '1');
+      animate.setAttribute('fill', 'freeze');
+      animate.setAttribute('calcMode', 'linear');
+      animate.setAttribute('values', `${len};0`);
+      return animate;
+    };
+
+    if (isIE() || isEDGE()) {
+      // TODO: fix isNaN for IE
+      if (!customIsNaN(this.prevActiveItem)) {
+        const oldItemHash = this.payload[this.prevActiveItem].hash;
+        disactivateDestination(this.mainElement.querySelector(`#svg-destination-${oldItemHash}`));
+      }
+      activateDestination(svgDestination);
+    } else {
+      // TODO: fix isNaN for IE
+      if (!customIsNaN(this.prevActiveItem)) {
+        const oldItemHash = this.payload[this.prevActiveItem].hash;
+        disactivateDestination(this.mainElement.querySelector(`#svg-destination-${oldItemHash}`));
+      }
+      const len = Math.round(svgLine.getTotalLength());
+      svgLine.setAttribute('stroke-dasharray', len);
+      svgLine.setAttribute('stroke-dashoffset', len);
+
+      const animate = createAnim(len);
+
+      svgLine.appendChild(animate);
+      animate.beginElement();
+
+      setTimeout(() => activateDestination(svgDestination), 2100);
+    }
   }
 
   generateLocations() {

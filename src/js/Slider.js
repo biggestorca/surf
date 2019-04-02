@@ -10,6 +10,7 @@ class Slider {
     ];
     this.isEmpty = !payload;
     this.activeItem = 0;
+    this.prevActiveItem = NaN;
     this.prevBtn = this.mainElement.querySelector('.prev');
     this.nextBtn = this.mainElement.querySelector('.next');
 
@@ -27,6 +28,7 @@ class Slider {
   }
 
   prev() {
+    this.prevActiveItem = this.activeItem;
     if (this.activeItem - 1 < 0) {
       this.activeItem = this.payload.length - 1;
     } else if (this.activeItem - 1 >= 0) {
@@ -35,6 +37,7 @@ class Slider {
   }
 
   next() {
+    this.prevActiveItem = this.activeItem;
     if (this.activeItem + 1 > this.payload.length - 1) {
       this.activeItem = 0;
     } else {
@@ -43,6 +46,7 @@ class Slider {
   }
 
   activateById(id) {
+    this.prevActiveItem = this.activeItem;
     this.activeItem = id;
   }
 }

@@ -75,6 +75,18 @@
     height: 100%;
     padding: 30px 80px 34px 0;
 
+    &__manipulation {
+      z-index: 3;
+    }
+
+    &__cost-line {
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 1;
+      opacity: 0.5;
+    }
+
     &__content {
       display: flex;
       flex-direction: column;
@@ -166,6 +178,70 @@
 
       &-name {
         font-weight: 300;
+      }
+    }
+  }
+
+  .svg {
+    &-current-location {
+      position: absolute;
+      top: 72px;
+      right: 265px;
+      z-index: 3;
+    }
+
+    &-path {
+      position: absolute;
+      z-index: 2;
+      display: none;
+
+      &-active {
+        display: initial;
+      }
+
+      &-north-shore {
+        top: 87px;
+        right: 275px;
+      }
+
+      &-west-shore {
+        top: 83px;
+        right: 239px;
+      }
+
+      &-south-shore {
+        top: 80px;
+        right: 179px;
+      }
+
+      &-east-shore {
+        top: 80px;
+        right: 146px;
+      }
+    }
+
+    &-destination {
+      position: absolute;
+      z-index: 3;
+
+      &-north-shore {
+        top: 222px;
+        right: 633px;
+      }
+
+      &-west-shore {
+        top: 313px;
+        right: 421px;
+      }
+
+      &-south-shore {
+        top: 357px;
+        right: 337px;
+      }
+
+      &-east-shore {
+        top: 465px;
+        right: 273px;
       }
     }
   }
