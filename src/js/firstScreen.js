@@ -107,9 +107,7 @@ class FirstScreenSlider extends Slider {
     const wrapper = document.createElement('div');
     wrapper.classList.add('slider__location-wrapper');
 
-    // TODO: rewrite to forEach loop
-    // eslint-disable-next-line no-plusplus
-    for (let i = 0; i < this.payload.length; i++) {
+    this.payload.forEach((payloadElem, i) => {
       const item = document.createElement('div');
       item.classList.add('slider__location-item');
       item.setAttribute('data-id', i);
@@ -120,8 +118,8 @@ class FirstScreenSlider extends Slider {
       const itemName = document.createElement('div');
       itemName.classList.add('slider__location-item-name');
 
-      itemCount.innerText = i < 9 ? `0${this.payload[i].id + 1}` : this.payload[i].id + 1;
-      itemName.innerText = this.payload[i].name;
+      itemCount.innerText = i < 9 ? `0${payloadElem.id + 1}` : payloadElem.id + 1;
+      itemName.innerText = payloadElem.name;
 
       item.appendChild(itemCount);
       item.appendChild(itemName);
@@ -129,7 +127,7 @@ class FirstScreenSlider extends Slider {
       item.addEventListener('click', () => this.activateById(i));
 
       wrapper.appendChild(item);
-    }
+    });
 
     this.mainElement.querySelector('.slider__content').appendChild(wrapper);
   }
@@ -154,7 +152,7 @@ const firstScreen = () =>
     getUserGeolocation();
 
     const firstScreenSlider = new FirstScreenSlider($firstScreen, payload);
-    console.log(firstScreenSlider);
+    firstScreenSlider.activateById(0);
 
     if (isIE()) {
       $firstScreen.querySelector('.slider__content').classList.add('slider__content--ie');
