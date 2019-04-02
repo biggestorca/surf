@@ -31,27 +31,28 @@ const payload = [
 const computedHeight = (element) => {
   const height = window.innerHeight;
 
-  const computedSmallClass = (el, h) => {
+  const allScreenClass = (el, h) => {
     if (h < 1024) {
-      el.classList.add('small');
       el.classList.remove('all-screen-height');
     } else {
-      el.classList.remove('small');
       el.classList.add('all-screen-height');
     }
   };
 
-  computedSmallClass(element, height);
+  allScreenClass(element, height);
 
   document.addEventListener(
     'resize',
     () => {
       const newHeight = window.innerHeight;
-      computedSmallClass(element, newHeight);
+      allScreenClass(element, newHeight);
     },
     false,
   );
 };
+
+const isIE = () =>
+  window.navigator.userAgent.indexOf('MSIE') !== -1 || !!document.documentMode === true;
 
 const getUserGeolocation = () => {
   const $element = document.getElementById('geolocation');
@@ -77,6 +78,15 @@ class FirstScreenSlider extends Slider {
     const data = this.payload[this.activeItem];
     this.mainElement.querySelector('.slider__name').innerText = data.name;
     this.mainElement.querySelector('.slider__condition').innerText = data.condition;
+    const directionEl = this.mainElement.querySelector('.slider__direction');
+
+    if (data.condition === 'Radical') {
+      directionEl.classList.add('slider__direction--radial');
+      directionEl.classList.remove('slider__direction--conservative');
+    } else {
+      directionEl.classList.add('slider__direction--conservative');
+      directionEl.classList.remove('slider__direction--radial');
+    }
 
     const $locationItems = Array.prototype.slice.call(
       this.mainElement.querySelectorAll('.slider__location-item'),
@@ -121,7 +131,7 @@ class FirstScreenSlider extends Slider {
       wrapper.appendChild(item);
     }
 
-    this.mainElement.querySelector('.slider').appendChild(wrapper);
+    this.mainElement.querySelector('.slider__content').appendChild(wrapper);
   }
   prev() {
     super.prev();
@@ -144,8 +154,11 @@ const firstScreen = () =>
     getUserGeolocation();
 
     const firstScreenSlider = new FirstScreenSlider($firstScreen, payload);
+    console.log(firstScreenSlider);
 
-    console.dir(firstScreenSlider);
+    if (isIE()) {
+      $firstScreen.querySelector('.slider__content').classList.add('slider__content--ie');
+    }
   });
 
 export default firstScreen;

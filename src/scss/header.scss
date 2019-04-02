@@ -6,8 +6,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   width: 169px;
   height: 100%;
+  padding-bottom: 41px;
   color: #fff;
   border-right: 1px solid transparentize($gray--dark, 0.25);
 
@@ -18,7 +20,7 @@
   }
 
   .nav {
-    margin-top: 92px;
+    // margin-top: 92px;
 
     ul {
       padding: 0;

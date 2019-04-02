@@ -6,6 +6,7 @@
 @import 'variables.scss';
 @import 'media.scss';
 @import 'fonts.scss';
+@import 'slider.scss';
 
 /* components */
 @import 'hero-block.scss';
@@ -48,4 +49,24 @@ body {
   padding-top: 40px;
   font-size: $f-x-lg;
   font-weight: 800;
+}
+
+.width-line {
+  position: relative;
+  font-size: $f-x-md;
+  line-height: 32px;
+  color: transparentize(#fff, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 7.33px;
+
+  &::before {
+    position: absolute;
+    top: 45%;
+    left: -64px;
+    width: 80px;
+    height: 1px;
+    content: '';
+    background: transparentize($gray--dark, 0.5);
+    transform: translate(-50%, 0);
+  }
 }
