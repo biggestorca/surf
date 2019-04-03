@@ -1,5 +1,15 @@
 .surf {
+  position: relative;
   width: 100%;
-  height: 1950px;
   padding-top: 127px;
+
+  .map {
+    position: relative;
+    top: -19px;
+    left: 13px;
+    width: 100%;
+    height: 635px;
+    margin-left: 79px;
+    background: transparent url('/img/World_Map_Dots.svg') 0 0 no-repeat;
+  }
 }
