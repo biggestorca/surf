@@ -2,6 +2,7 @@
   position: relative;
   width: 100%;
   padding-top: 127px;
+  overflow: hidden;
 
   .map {
     position: relative;
@@ -11,5 +12,17 @@
     height: 635px;
     margin-left: 79px;
     background: transparent url('/img/World_Map_Dots.svg') 0 0 no-repeat;
+
+    .coords {
+      position: absolute;
+      top: 54%;
+      right: -8px;
+      font-size: $f-md;
+      font-weight: 400;
+      line-height: 22px;
+      letter-spacing: 8px;
+      opacity: 0.5;
+      transform: rotate(-90deg) translate(0, -50%);
+    }
   }
 }
