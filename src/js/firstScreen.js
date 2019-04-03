@@ -1,11 +1,6 @@
-import 'whatwg-fetch';
 import Slider from './Slider';
 import isNaN from './isNaN';
 import { isIE, isEDGE } from './checkBrowser';
-
-const ES6Promise = require('es6-promise');
-
-ES6Promise.polyfill();
 
 const payload = [
   {

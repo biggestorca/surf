@@ -1,3 +1,5 @@
+const env = process.env.NODE_ENV;
+
 class Slider {
   constructor(mainElement, payload) {
     this.mainElement = mainElement;
@@ -8,9 +10,19 @@ class Slider {
         description: 'No data for current slider',
       },
     ];
-    this.isEmpty = !payload;
+    this.isEmpty = !this.payload;
+
+    this.firstRender();
+    this.activateButtons();
+  }
+
+  firstRender() {
     this.activeItem = 0;
     this.prevActiveItem = NaN;
+    this.isFirstRender = true;
+  }
+
+  activateButtons() {
     this.prevBtn = this.mainElement.querySelector('.prev');
     this.nextBtn = this.mainElement.querySelector('.next');
 
@@ -21,10 +33,6 @@ class Slider {
       this.prevBtn.addEventListener('click', () => this.prev());
       this.nextBtn.addEventListener('click', () => this.next());
     }
-  }
-
-  sayHi() {
-    console.log(this.mainElement);
   }
 
   prev() {
@@ -53,8 +61,21 @@ class Slider {
     this.updateView();
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  updateView() {}
+  updateView() {
+    if (this.isFirstRender) {
+      this.isFirstRender = false;
+    }
+  }
+
+  sayHi() {
+    if (env === 'production') {
+      console.log('Hello from slider');
+    } else {
+      console.log('html', this.mainElement);
+      console.log('payload', this.payload);
+      console.log('this', this);
+    }
+  }
 }
 
 export default Slider;
