@@ -9,6 +9,7 @@
 @import 'slider.scss';
 
 /* components */
+@import 'section.scss';
 @import 'hero-block.scss';
 @import 'header.scss';
 @import 'first-screen.scss';
@@ -39,34 +40,5 @@ body {
 
   main {
     flex: 1 0 auto;
-  }
-}
-
-// временная
-.section {
-  display: flex;
-  justify-content: center;
-  padding-top: 40px;
-  font-size: $f-x-lg;
-  font-weight: 800;
-}
-
-.width-line {
-  position: relative;
-  font-size: $f-x-md;
-  line-height: 32px;
-  color: transparentize(#fff, 0.5);
-  text-transform: uppercase;
-  letter-spacing: 7.33px;
-
-  &::before {
-    position: absolute;
-    top: 45%;
-    left: -64px;
-    width: 80px;
-    height: 1px;
-    content: '';
-    background: transparentize($gray--dark, 0.5);
-    transform: translate(-50%, 0);
   }
 }
