@@ -34,6 +34,7 @@ class Slider {
     } else if (this.activeItem - 1 >= 0) {
       this.activeItem -= 1;
     }
+    this.updateView();
   }
 
   next() {
@@ -43,12 +44,17 @@ class Slider {
     } else {
       this.activeItem += 1;
     }
+    this.updateView();
   }
 
   activateById(id) {
     this.prevActiveItem = this.activeItem;
     this.activeItem = id;
+    this.updateView();
   }
+
+  // eslint-disable-next-line class-methods-use-this
+  updateView() {}
 }
 
 export default Slider;

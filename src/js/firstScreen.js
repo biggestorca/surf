@@ -1,17 +1,11 @@
 import 'whatwg-fetch';
 import Slider from './Slider';
+import isNaN from './isNaN';
+import { isIE, isEDGE } from './checkBrowser';
 
 const ES6Promise = require('es6-promise');
 
 ES6Promise.polyfill();
-
-// TODO: fix isNaN for IE
-function customIsNaN(o) {
-  if (Number.isNaN) {
-    return Number.isNaN(o);
-  }
-  return typeof o === 'number';
-}
 
 const payload = [
   {
@@ -63,11 +57,6 @@ const computedHeight = (element) => {
   );
 };
 
-const isIE = () =>
-  window.navigator.userAgent.indexOf('MSIE') !== -1 || !!document.documentMode === true;
-
-const isEDGE = () => /Edge/.test(window.navigator.userAgent);
-
 const getUserGeolocation = () => {
   const $element = document.getElementById('geolocation');
   const $cityEl = $element.querySelector('.city');
@@ -81,6 +70,9 @@ const getUserGeolocation = () => {
   });
 };
 
+// TODO: simply
+// TODO: set all functions in methods
+// TODO: fix destinationSvg changes when quick slide
 class FirstScreenSlider extends Slider {
   constructor(mainEl, data) {
     super(mainEl, data);
@@ -88,6 +80,7 @@ class FirstScreenSlider extends Slider {
   }
 
   updateView() {
+    super.updateView();
     const data = this.payload[this.activeItem];
     this.mainElement.querySelector('.slider__name').innerText = data.name;
     this.mainElement.querySelector('.slider__condition').innerText = data.condition;
@@ -118,8 +111,7 @@ class FirstScreenSlider extends Slider {
   }
 
   buildPath() {
-    // TODO: fix isNaN for IE
-    if (typeof this.prevActiveItem === 'number') {
+    if (!isNaN(this.prevActiveItem)) {
       const oldSvg = this.mainElement.querySelector(`#svg-path-${this.payload[this.prevActiveItem].hash}`);
 
       if (isIE()) {
@@ -131,7 +123,7 @@ class FirstScreenSlider extends Slider {
       }
     }
 
-    const { hash } = this.payload[this.activeItem];
+    const { hash, name } = this.payload[this.activeItem];
     const svg = this.mainElement.querySelector(`#svg-path-${hash}`);
     if (isIE()) {
       const classList = svg.getAttribute('class');
@@ -152,6 +144,18 @@ class FirstScreenSlider extends Slider {
         'd',
         'M3 6C4.65685 6 6 4.65685 6 3C6 1.34315 4.65685 0 3 0C1.34315 0 0 1.34315 0 3C0 4.65685 1.34315 6 3 6Z',
       );
+
+      const $destinationNames = Array.prototype.slice.call(
+        document.querySelectorAll('.destination-name'),
+        0,
+      );
+
+      if ($destinationNames.length > 0) {
+        $destinationNames.forEach((destinationName) => {
+          destinationName.classList.add('remove');
+          setTimeout(() => destinationName.parentNode.removeChild(destinationName), 1000);
+        });
+      }
     };
 
     const activateDestination = (elem) => {
@@ -163,6 +167,20 @@ class FirstScreenSlider extends Slider {
         'd',
         'M6.5 13C10.0899 13 13 10.0899 13 6.5C13 2.91015 10.0899 0 6.5 0C2.91015 0 0 2.91015 0 6.5C0 10.0899 2.91015 13 6.5 13Z',
       );
+    };
+
+    const createDestionationName = (destination) => {
+      const destinationName = document.createElement('div');
+      destinationName.innerText = `${name} | Malibu, CA`;
+      destinationName.classList.add('destination-name');
+      destinationName.style.position = 'absolute';
+      const computedElemStyle = window.getComputedStyle(destination, null);
+      destinationName.style.top = `${+computedElemStyle.getPropertyValue('top').slice(0, -2) -
+        6}px`;
+      destinationName.style.right = `${+computedElemStyle.getPropertyValue('right').slice(0, -2) +
+        24}px`;
+
+      document.querySelector('.slider__path').insertBefore(destinationName, destination);
     };
 
     const createAnim = (len) => {
@@ -178,19 +196,14 @@ class FirstScreenSlider extends Slider {
       return animate;
     };
 
+    if (!isNaN(this.prevActiveItem)) {
+      const oldItemHash = this.payload[this.prevActiveItem].hash;
+      disactivateDestination(this.mainElement.querySelector(`#svg-destination-${oldItemHash}`));
+    }
+
     if (isIE() || isEDGE()) {
-      // TODO: fix isNaN for IE
-      if (!customIsNaN(this.prevActiveItem)) {
-        const oldItemHash = this.payload[this.prevActiveItem].hash;
-        disactivateDestination(this.mainElement.querySelector(`#svg-destination-${oldItemHash}`));
-      }
       activateDestination(svgDestination);
     } else {
-      // TODO: fix isNaN for IE
-      if (!customIsNaN(this.prevActiveItem)) {
-        const oldItemHash = this.payload[this.prevActiveItem].hash;
-        disactivateDestination(this.mainElement.querySelector(`#svg-destination-${oldItemHash}`));
-      }
       const len = Math.round(svgLine.getTotalLength());
       svgLine.setAttribute('stroke-dasharray', len);
       svgLine.setAttribute('stroke-dashoffset', len);
@@ -200,8 +213,11 @@ class FirstScreenSlider extends Slider {
       svgLine.appendChild(animate);
       animate.beginElement();
 
-      setTimeout(() => activateDestination(svgDestination), 2100);
+      setTimeout(() => {
+        activateDestination(svgDestination);
+      }, 2100);
     }
+    createDestionationName(svgDestination);
   }
 
   generateLocations() {
@@ -231,18 +247,6 @@ class FirstScreenSlider extends Slider {
     });
 
     this.mainElement.querySelector('.slider__content').appendChild(wrapper);
-  }
-  prev() {
-    super.prev();
-    this.updateView();
-  }
-  next() {
-    super.next();
-    this.updateView();
-  }
-  activateById(id) {
-    super.activateById(id);
-    this.updateView();
   }
 }
 
