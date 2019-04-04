@@ -1,4 +1,5 @@
 import 'whatwg-fetch';
+import 'babel-polyfill';
 import registerServiceWorker from './registerServiceWorker';
 import smoothScrollToAnchor from './smoothScrollToAnchor';
 import headerDatetime from './headerDatetime';

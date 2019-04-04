@@ -25,4 +25,221 @@
       transform: rotate(-90deg) translate(0, -50%);
     }
   }
+
+  &-place {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    background-color: $secondary;
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(74, 246, 205, 0.837777);
+    transition: all ease 0.35s;
+
+    &:hover {
+      box-shadow: 0 0 35px rgba(74, 246, 205, 0.837777);
+    }
+
+    &--active {
+      box-shadow: 0 0 35px rgba(74, 246, 205, 0.837777);
+
+      > svg {
+        position: relative;
+        bottom: 12px;
+      }
+    }
+
+    &--malibu-beach {
+      top: 291px;
+      left: 136px;
+    }
+
+    &--airlie-beach {
+      top: 503px;
+      left: 1089px;
+    }
+
+    &--cloud-nine {
+      top: 396px;
+      left: 798px;
+    }
+
+    &--vieux-boucau {
+      top: 213px;
+      left: 530px;
+    }
+
+    &__tooltip {
+      position: absolute;
+      top: -237px;
+      left: -126.5px;
+      width: 283px;
+      padding: 26px 32px 31px;
+      background: transparentize(#0f1010, 0.3);
+      border-radius: 6px;
+      mix-blend-mode: normal;
+
+      .top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .name {
+        position: relative;
+        font-size: $f-md;
+        font-weight: 800;
+        line-height: 26px;
+        text-transform: uppercase;
+
+        &::after {
+          position: absolute;
+          bottom: -8px;
+          left: 0;
+          width: 80px;
+          height: 1px;
+          content: '';
+          background: $secondary;
+        }
+      }
+
+      .country {
+        margin-top: 16px;
+      }
+
+      .info {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        margin-top: 30px;
+
+        &-item {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: space-between;
+
+          &__val {
+            margin-top: 5px;
+            font-weight: 800;
+            line-height: 23px;
+          }
+
+          &__explain {
+            margin-top: 3px;
+            font-size: $f-xx-sm;
+            font-weight: 300;
+            line-height: 12px;
+            text-transform: uppercase;
+          }
+        }
+      }
+    }
+  }
+
+  .slider__manipulation {
+    display: flex;
+    justify-content: flex-end;
+    margin: 29px 82px 0 0;
+  }
+
+  .card {
+    &__list {
+      display: flex;
+      align-items: center;
+      padding-bottom: 120px;
+      overflow: hidden;
+    }
+
+    &__item {
+      position: relative;
+      flex-grow: 1;
+      min-width: 390px;
+      height: 750px;
+      padding: 78px 78px 0 40px;
+      cursor: pointer;
+      background-size: cover;
+
+      &::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        content: '';
+        background: transparentize(#1c2121, 0.25);
+      }
+
+      > * {
+        position: relative;
+        z-index: 3;
+      }
+
+      &:nth-child(even) {
+        min-width: 400px;
+      }
+
+      &--malibu-beach {
+        top: 55px;
+        background: url('/img/malibu_beach.jpg') 0 0 no-repeat;
+      }
+
+      &--airlie-beach {
+        top: 23px;
+        left: -40px;
+        background: url('/img/airlie_beach.jpg') 0 0 no-repeat;
+      }
+
+      &--cloud-nine {
+        top: 112px;
+        left: -20px;
+        background: url('/img/cloud_nine.jpg') 0 0 no-repeat;
+      }
+
+      &--vieux-boucau {
+        top: 23px;
+        left: -26px;
+        background: url('/img/vieux_boucau.jpg') 0 0 no-repeat;
+      }
+
+      .hero {
+        position: absolute;
+        bottom: 0;
+        visibility: hidden;
+      }
+
+      &--active,
+      &:hover {
+        &::after {
+          content: none;
+        }
+
+        .hero {
+          visibility: initial;
+        }
+      }
+    }
+
+    &__name {
+      font-size: $f-lg;
+      font-weight: 800;
+      line-height: 36px;
+      text-transform: uppercase;
+      word-spacing: 300px;
+    }
+
+    &__locations {
+      position: absolute;
+      bottom: 247px;
+      left: -129px;
+      width: 100%;
+      font-size: $f-md;
+      line-height: 22px;
+      text-transform: uppercase;
+      letter-spacing: 8px;
+      transform: rotate(-90deg);
+    }
+  }
 }

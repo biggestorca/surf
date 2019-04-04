@@ -3,7 +3,7 @@ const env = process.env.NODE_ENV;
 class Slider {
   constructor(mainElement, payload) {
     this.mainElement = mainElement;
-    this.payload = payload || [
+    this.payload = payload.map((pa, i) => Object.assign(pa, { active: i === 0 })) || [
       {
         id: 0,
         name: 'Empty slider',
@@ -42,6 +42,7 @@ class Slider {
     } else if (this.activeItem - 1 >= 0) {
       this.activeItem -= 1;
     }
+
     this.updateView();
   }
 
@@ -56,15 +57,23 @@ class Slider {
   }
 
   activateById(id) {
-    this.prevActiveItem = this.activeItem;
-    this.activeItem = id;
-    this.updateView();
+    if (this.activeItem !== id) {
+      this.prevActiveItem = this.activeItem;
+      this.activeItem = id;
+      this.updateView();
+    }
   }
 
   updateView() {
     if (this.isFirstRender) {
       this.isFirstRender = false;
     }
+    this.updateActiveItemInPayload();
+  }
+
+  updateActiveItemInPayload() {
+    this.payload = this.payload.map((pa, i) =>
+      Object.assign(pa, { active: i === this.activeItem }));
   }
 
   sayHi() {

@@ -13,6 +13,7 @@
     "deploy": "rm -rf public && mkdir public && webpack --config webpack.prod.js && firebase deploy"
   },
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "es6-promise": "^4.2.6",
     "normalize.css": "^8.0.1",
     "smoothscroll-polyfill": "^0.4.4",
