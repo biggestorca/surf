@@ -67,7 +67,6 @@ const travel = () =>
 
     const slider = new SurfSlider($travel, payload);
     slider.init();
-    slider.sayHi();
   });
 
 export default travel;
