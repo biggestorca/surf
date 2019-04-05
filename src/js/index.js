@@ -2,6 +2,7 @@ import 'whatwg-fetch';
 import 'babel-polyfill';
 import registerServiceWorker from './registerServiceWorker';
 import smoothScrollToAnchor from './smoothScrollToAnchor';
+import parameterBlock from './parameterBlock';
 import headerDatetime from './headerDatetime';
 import firstScreen from './firstScreen';
 import surf from './surf';
@@ -19,6 +20,7 @@ if (env === 'production') {
 }
 
 smoothScrollToAnchor();
+parameterBlock();
 firstScreen();
 headerDatetime();
 surf();
