@@ -1,6 +1,6 @@
 import Slider from './Slider';
 // import isNaN from './isNaN';
-// import { isIE, isEDGE } from './checkBrowser';
+import { isIE } from './checkBrowser';
 
 const payload = [
   {
@@ -58,8 +58,10 @@ const payload = [
 ];
 
 class SurfSlider extends Slider {
-  firstRender() {
-    super.firstRender();
+  init() {
+    super.init();
+
+    this.setCurrentLocation();
     // генерация всех блоков
     this.generatePlacesOnMap();
     this.generateCards();
@@ -70,6 +72,7 @@ class SurfSlider extends Slider {
 
   updateView() {
     super.updateView();
+    this.setCurrentLocation();
     this.setActivePlaceOnMap();
     this.setActiveCard();
   }
@@ -348,6 +351,14 @@ class SurfSlider extends Slider {
     // выключаем активную карточку
     item.classList.remove('card__item--active');
   }
+
+  setCurrentLocation() {
+    const currentActiveItemData = this.payload[this.activeItem];
+    const currentLocation = this.mainElement.querySelector('#surf-current-location');
+    currentLocation.innerHTML = `${currentActiveItemData.city} <span class="divider">|</span> ${
+      currentActiveItemData.country
+    }`;
+  }
 }
 
 const surf = () =>
@@ -355,7 +366,10 @@ const surf = () =>
     const $surf = document.getElementById('surf');
 
     const slider = new SurfSlider($surf, payload);
-    slider.sayHi();
+    slider.init();
+    if (isIE()) {
+      $surf.querySelector('#card__list').classList.add('card__list--ie');
+    }
   });
 
 export default surf;

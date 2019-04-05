@@ -11,15 +11,13 @@ class Slider {
       },
     ];
     this.isEmpty = !this.payload;
-
-    this.firstRender();
-    this.activateButtons();
   }
 
-  firstRender() {
+  init() {
     this.activeItem = 0;
     this.prevActiveItem = NaN;
     this.isFirstRender = true;
+    this.activateButtons();
   }
 
   activateButtons() {

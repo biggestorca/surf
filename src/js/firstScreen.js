@@ -69,9 +69,11 @@ const getUserGeolocation = () => {
 // TODO: set all functions in methods
 // TODO: fix destinationSvg changes when quick slide
 class FirstScreenSlider extends Slider {
-  constructor(mainEl, data) {
-    super(mainEl, data);
+  init() {
+    super.init();
     this.generateLocations();
+    this.activateById(0);
+    this.updateView();
   }
 
   updateView() {
@@ -252,7 +254,7 @@ const firstScreen = () =>
     getUserGeolocation();
 
     const firstScreenSlider = new FirstScreenSlider($firstScreen, payload);
-    firstScreenSlider.activateById(0);
+    firstScreenSlider.init();
 
     if (isIE()) {
       $firstScreen.querySelector('.slider__content').classList.add('slider__content--ie');
