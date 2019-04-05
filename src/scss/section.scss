@@ -55,6 +55,7 @@
 
 .width-line {
   position: relative;
+  display: inline-block;
   font-size: $f-x-md;
   font-weight: 400;
   line-height: 32px;
@@ -71,5 +72,12 @@
     content: '';
     background: transparentize($gray--dark, 0.5);
     transform: translate(-50%, 0);
+  }
+
+  &--revert {
+    &::before {
+      right: -144px;
+      left: initial;
+    }
   }
 }

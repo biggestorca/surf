@@ -6,6 +6,7 @@ import parameterBlock from './parameterBlock';
 import headerDatetime from './headerDatetime';
 import firstScreen from './firstScreen';
 import surf from './surf';
+import travel from './travel';
 
 const ES6Promise = require('es6-promise');
 
@@ -24,3 +25,4 @@ parameterBlock();
 firstScreen();
 headerDatetime();
 surf();
+travel();

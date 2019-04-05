@@ -1,7 +1,65 @@
 .travel {
+  position: relative;
   width: 100%;
+  padding-top: 217px;
+
+  .section__subtitle-wrapper {
+    margin-top: 140px;
+  }
+
+  .slider__manipulation {
+    display: flex;
+    justify-content: flex-end;
+    margin: 31px 82px 0 0;
+  }
+
+  &__image {
+    // position: relative;
+    // top: -235px;
+    position: absolute;
+    top: 423px;
+    z-index: 1;
+  }
+
+  &__airline {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 134px;
+    margin-top: 356px;
+    overflow: hidden;
+
+    &-name {
+      margin-top: 13px;
+      font-size: $f-lg;
+      font-weight: 800;
+      line-height: 40px;
+      text-transform: uppercase;
+    }
+
+    &-icon {
+      position: relative;
+      top: -43px;
+      right: 0;
+      transform: rotate(10deg);
+    }
+  }
 
   .parameter {
-    margin: 30px 133px 0;
+    width: 1168px;
+    padding-top: 42px;
+    margin: 0 auto;
+  }
+
+  &__coctail {
+    position: absolute;
+    right: 0;
+    bottom: -251px;
+  }
+
+  &__hero {
+    width: 326px;
+    margin: 45px auto 0;
   }
 }
