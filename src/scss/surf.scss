@@ -150,33 +150,13 @@
       align-items: center;
       padding-bottom: 112px;
       overflow: hidden;
-
-      &--ie {
-        padding-bottom: 0;
-
-        .card__item {
-          position: relative;
-          top: initial;
-          left: initial;
-          flex: 0 0 360px;
-          width: 360px;
-          min-width: 360px;
-          max-width: 360px;
-
-          &:nth-child(even) {
-            flex: 0 0 360px;
-            width: 360px;
-            min-width: 360px;
-          }
-        }
-      }
     }
 
     &__item {
       position: relative;
-      flex: 0 0 390px;
-      flex-grow: 1;
+      flex-shrink: 0;
       min-width: 390px;
+      max-width: 390px;
       height: 750px;
       padding: 78px 78px 0 40px;
       cursor: pointer;
@@ -199,8 +179,8 @@
       }
 
       &:nth-child(even) {
-        flex: 0 0 400px;
         min-width: 400px;
+        max-width: 400px;
       }
 
       &--malibu-beach {

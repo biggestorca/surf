@@ -1,6 +1,4 @@
 import Slider from './Slider';
-// import isNaN from './isNaN';
-import { isIE } from './checkBrowser';
 
 const payload = [
   {
@@ -367,9 +365,6 @@ const surf = () =>
 
     const slider = new SurfSlider($surf, payload);
     slider.init();
-    if (isIE()) {
-      $surf.querySelector('#card__list').classList.add('card__list--ie');
-    }
   });
 
 export default surf;
