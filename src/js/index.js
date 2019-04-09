@@ -1,6 +1,7 @@
 import 'whatwg-fetch';
 import 'babel-polyfill';
 import registerServiceWorker from './registerServiceWorker';
+import lazyImagesLoader from './lazyImages';
 import smoothScrollToAnchor from './smoothScrollToAnchor';
 import parameterBlock from './parameterBlock';
 import headerDatetime from './headerDatetime';
@@ -22,7 +23,7 @@ if (env === 'production') {
 } else {
   console.log(`NODE_ENV is: '${env}', servise worker DISABLED.`);
 }
-
+lazyImagesLoader();
 smoothScrollToAnchor();
 parameterBlock();
 firstScreen();

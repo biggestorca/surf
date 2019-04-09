@@ -11,7 +11,7 @@
     <button class="next">next</button>
   </div>
 
-  <img alt="sleep" class="sleep__image" id="sleep__location-image" />
+  <img alt="sleep" class="sleep__image lazy" id="sleep__location-image" />
 
   <div class="sleep__rating">
     <div class="sleep__rating-name-wrapper">
@@ -20,7 +20,12 @@
       </div>
       <div class="sleep__rating-name" id="sleep__rating"></div>
     </div>
-    <img class="sleep__rating-icon" src="/img/gammok.png" alt="airline" />
+    <img
+      class="sleep__rating-icon lazy"
+      src="/img/gammok.png"
+      data-src="/img/gammok.png"
+      alt="airline"
+    />
   </div>
 
   <div class="parameter">
@@ -37,6 +42,7 @@
           <div class="parameter__value" id="sleep__night"></div>
           <div class="parameter__other-stuff">
             <button id="decrement-night">
+              decrement-night
               <svg
                 width="14"
                 height="4"
@@ -51,6 +57,7 @@
               </svg>
             </button>
             <button id="increment-night">
+              increment-night
               <svg
                 width="14"
                 height="14"
@@ -77,6 +84,7 @@
           <div class="parameter__value" id="sleep__guests"></div>
           <div class="parameter__other-stuff">
             <button id="decrement-guest">
+              decrement-guest
               <svg
                 width="14"
                 height="4"
@@ -91,6 +99,7 @@
               </svg>
             </button>
             <button id="increment-guest">
+              increment-guest
               <svg
                 width="14"
                 height="14"
@@ -120,7 +129,12 @@
       </div>
     </div>
   </div>
-  <img class="sleep__flower" alt="flower" src="/img/Frangipani.png" />
+  <img
+    class="sleep__flower lazy"
+    alt="flower"
+    src="/img/Frangipani.png"
+    data-src="/img/Frangipani.png"
+  />
 
   <div class="hero sleep__hero">
     Book

@@ -97,6 +97,12 @@
         max-width: calc(22px + 336px);
       }
     }
+
+    &__other-stuff {
+      button {
+        font-size: 0;
+      }
+    }
   }
 
   &__flower {

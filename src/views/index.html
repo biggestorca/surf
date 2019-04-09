@@ -13,7 +13,12 @@
         <button class="prev">prev</button>
         <button class="next">next</button>
       </div>
-      <img src="/img/cost-line.png" alt="cost" class="slider__cost-line" />
+      <img
+        src="/img/cost-line.png"
+        alt="cost"
+        class="slider__cost-line lazy"
+        data-src="/img/cost-line.png"
+      />
       <div class="slider__path">
         <svg
           id="svg-current-location"
@@ -222,7 +227,11 @@
         </div>
         <div class="travel__airline-name" id="travel__airline-name"></div>
       </div>
-      <img class="travel__airline-icon" src="/img/flyigth.png" alt="airline" />
+      <img
+        class="travel__airline-icon lazy"
+        src="/img/flyigth.png"
+        alt="airline"
+      />
     </div>
 
     <div class="parameter">
@@ -255,10 +264,12 @@
       </div>
     </div>
     <img
-      class="travel__coctail"
+      class="travel__coctail lazy"
       alt="coctail"
       src="/img/cocktail.png"
       srcset="/img/cocktail@2x.png 2x"
+      data-src="/img/cocktail.png"
+      data-srcset="/img/cocktail@2x.png 2x"
     />
 
     <div class="hero travel__hero">
@@ -281,7 +292,7 @@
     </div>
   </section>
 
-  <%= _.template(require('../components/sleep.html'))() %>
-  <%= _.template(require('../components/shop.html'))() %>
+  <%= _.template(require('../components/sleep.html'))() %> <%=
+  _.template(require('../components/shop.html'))() %>
 </main>
 <%= _.template(require('../components/footer.html'))(tempParameters) %>
