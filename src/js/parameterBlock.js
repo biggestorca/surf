@@ -14,6 +14,10 @@ const parameterBlock = () => {
         parameterItem.style.minHeight = `${+computedNameStyle
           .getPropertyValue('width')
           .slice(0, -2) + 18}px`;
+
+        parameterName.style.minWidth = `${+computedNameStyle
+          .getPropertyValue('width')
+          .slice(0, -2) + 18}px`;
       });
     },
     false,

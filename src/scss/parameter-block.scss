@@ -8,6 +8,8 @@
   &__item {
     position: relative;
     display: inline-block;
+    flex-shrink: 0;
+    max-width: 25%;
   }
 
   &__name {
@@ -19,11 +21,13 @@
     color: transparentize(#fff, 0.5);
     text-transform: uppercase;
     letter-spacing: 8px;
+    word-wrap: normal;
     transform: rotate(270deg);
     transform-origin: 0 0;
   }
 
   &__content {
+    display: inline-block;
     padding-left: 30px;
   }
 
@@ -33,6 +37,11 @@
     line-height: 36px;
     text-transform: uppercase;
     word-spacing: 30%;
+
+    span {
+      display: inline-block;
+      min-width: 40px;
+    }
   }
 
   &__title {
@@ -47,5 +56,17 @@
     display: flex;
     align-items: flex-start;
     justify-content: flex-end;
+
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      background: transparent;
+      border: 0;
+      outline: 0;
+    }
   }
 }
