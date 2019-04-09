@@ -1,3 +1,20 @@
-footer {
+.footer {
+  margin-top: 273px;
   text-align: center;
+
+  &__hero {
+    width: 180px;
+    margin: 0 auto;
+  }
+
+  &__copyright {
+    margin-top: 27px;
+    margin-bottom: 34px;
+    font-size: $f-x-sm;
+    font-weight: 300;
+    line-height: 14px;
+    color: transparentize(#fff, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 1.05px;
+  }
 }

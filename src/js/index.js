@@ -9,6 +9,7 @@ import surf from './surf';
 import travel from './travel';
 import sleep from './sleep';
 import shop from './shop';
+import footerDate from './footerDate';
 
 const ES6Promise = require('es6-promise');
 
@@ -30,3 +31,4 @@ surf();
 travel();
 sleep();
 shop();
+footerDate();
