@@ -3,6 +3,8 @@
   padding-top: 276px;
 
   .slider__manipulation {
+    position: relative;
+    z-index: 3;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -75,6 +77,7 @@
     }
 
     &-active {
+      position: relative;
     }
   }
 
@@ -125,6 +128,95 @@
       margin-top: 16px;
       font-size: $f-md;
       font-weight: 800;
+    }
+  }
+
+  .feature {
+    position: absolute;
+
+    &__button {
+      position: relative;
+      width: 20px;
+      height: 20px;
+      font-size: 0;
+      cursor: pointer;
+      background: #fff;
+      border: 0;
+      border-radius: 50%;
+      outline: 0;
+
+      &::after {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 11px;
+        height: 2px;
+        content: '';
+        background: $secondary;
+        transform: translate(-50%, -50%);
+      }
+
+      &::before {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 2px;
+        height: 11px;
+        content: '';
+        background: $secondary;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    &__text {
+      position: absolute;
+      top: 58%;
+      left: 132px;
+      display: none;
+      min-width: 255px;
+      font-size: $f-xx-md;
+      font-weight: 800;
+      line-height: 24px;
+      text-transform: uppercase;
+      transform: translate(0, -50%);
+
+      &::after {
+        position: absolute;
+        top: 50%;
+        left: -104px;
+        width: 80px;
+        height: 1px;
+        content: '';
+        background: transparentize($gray--dark, 0.5);
+        transform: translate(0, -50%);
+      }
+    }
+
+    &.open {
+      .feature__button {
+        &::before {
+          content: none;
+        }
+      }
+
+      .feature__text {
+        display: block;
+      }
+    }
+
+    &:nth-of-type(1) {
+      top: 197px;
+      left: 172px;
+    }
+
+    &:nth-of-type(2) {
+      top: 290px;
+      left: -5px;
+    }
+
+    &:nth-of-type(3) {
+      top: 605px;
+      left: 53px;
     }
   }
 

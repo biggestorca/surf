@@ -8,6 +8,7 @@ import firstScreen from './firstScreen';
 import surf from './surf';
 import travel from './travel';
 import sleep from './sleep';
+import shop from './shop';
 
 const ES6Promise = require('es6-promise');
 
@@ -28,3 +29,4 @@ headerDatetime();
 surf();
 travel();
 sleep();
+shop();
