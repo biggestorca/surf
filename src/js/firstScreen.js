@@ -58,18 +58,38 @@ class FirstScreenSlider extends Slider {
 
   setCurrentInfo() {
     const data = this.payload[this.activeItem];
-
-    this.mainElement.querySelector('#slider__name').innerText = data.name;
-    this.mainElement.querySelector('#slider__condition').innerText = data.condition;
-
+    const name = this.mainElement.querySelector('#slider__name');
+    const condition = this.mainElement.querySelector('#slider__condition');
     const directionEl = this.mainElement.querySelector('#slider__direction');
+
+    name.classList.remove('animation__appear--on');
+    condition.classList.remove('animation__appear--on');
+
+    directionEl.classList.remove('animation__fade-in-right--on');
+    directionEl.classList.remove('animation__fade-in-left--on');
+    directionEl.classList.remove('animation__fade-in-right');
+    directionEl.classList.remove('animation__fade-in-left');
+    if (data.condition === 'Radical') {
+      directionEl.classList.add('animation__fade-in-left');
+    } else {
+      directionEl.classList.add('animation__fade-in-right');
+    }
+
+    name.innerText = data.name;
+    condition.innerText = data.condition;
+    setInterval(() => {
+      name.classList.add('animation__appear--on');
+      condition.classList.add('animation__appear--on');
+    }, 750);
 
     if (data.condition === 'Radical') {
       directionEl.classList.add('slider__direction--radial');
       directionEl.classList.remove('slider__direction--conservative');
+      directionEl.classList.add('animation__fade-in-left--on');
     } else {
       directionEl.classList.add('slider__direction--conservative');
       directionEl.classList.remove('slider__direction--radial');
+      directionEl.classList.add('animation__fade-in-right--on');
     }
   }
 
@@ -83,7 +103,7 @@ class FirstScreenSlider extends Slider {
 
       animate.setAttribute('attributeName', 'stroke-dashoffset');
       animate.setAttribute('begin', 'indefinite');
-      animate.setAttribute('dur', '2s');
+      animate.setAttribute('dur', '1s');
       animate.setAttribute('repeatCount', '1');
       animate.setAttribute('fill', 'freeze');
       animate.setAttribute('calcMode', 'linear');
@@ -108,7 +128,7 @@ class FirstScreenSlider extends Slider {
 
       setTimeout(() => {
         this.activateDestination();
-      }, 2100);
+      }, 500);
     }
   }
 
@@ -146,13 +166,19 @@ class FirstScreenSlider extends Slider {
     const elem = this.mainElement.querySelector(`#svg-destination-${hash}`);
     const destinationLabel = this.mainElement.querySelector('#label-destination');
 
+    if (!isNaN(this.prevActiveItem)) {
+      destinationLabel.classList.remove('animation__appear--on');
+    }
+
     destinationLabel.innerHTML = `${name} | Malibu, CA`;
-    destinationLabel.classList.add('destination-name');
     destinationLabel.style.position = 'absolute';
     const computedElemStyle = window.getComputedStyle(elem, null);
     destinationLabel.style.top = `${+computedElemStyle.getPropertyValue('top').slice(0, -2) - 6}px`;
     destinationLabel.style.right = `${+computedElemStyle.getPropertyValue('right').slice(0, -2) +
       24}px`;
+    setTimeout(() => {
+      destinationLabel.classList.add('animation__appear--on');
+    }, 500);
   }
 
   disactivateDestination() {
