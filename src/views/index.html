@@ -197,27 +197,7 @@
     <a class="go-to-surf" id="go-to-surf" href="#surf">Go down</a>
   </section>
 
-  <section class="section surf" id="surf">
-    <h2 class="section__title" data-name="Surf">Surf</h2>
-    <div class="section__subtitle-wrapper">
-      <div class="width-line">
-        Current location
-      </div>
-      <div class="section__subtitle-name" id="surf-current-location">
-        California <span class="divider">|</span> USA
-      </div>
-    </div>
-    <div class="map">
-      <div class="coords">34.0501⚬N -118.2446⚬W</div>
-    </div>
-    <div class="slider__manipulation opacity">
-      <button class="prev">prev</button>
-      <button class="next">next</button>
-    </div>
-    <div class="card">
-      <div class="card__list" id="card__list"></div>
-    </div>
-  </section>
+  <%= _.template(require('../components/surf.html'))() %>
 
   <section class="section travel" id="travel">
     <h2 class="section__title" data-name="Travel">Travel</h2>

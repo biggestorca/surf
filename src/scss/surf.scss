@@ -1,3 +1,23 @@
+@keyframes heightAnimation {
+  from {
+    height: 100%;
+  }
+
+  to {
+    height: 0;
+  }
+}
+
+@keyframes heightAnimationRev {
+  from {
+    height: 0;
+  }
+
+  to {
+    height: 100%;
+  }
+}
+
 .surf {
   position: relative;
   width: 100%;
@@ -171,6 +191,15 @@
         height: 100%;
         content: '';
         background: transparentize(#1c2121, 0.25);
+        transition-delay: 0s;
+        transition-timing-function: ease-in-out;
+        transition-duration: 0.5s;
+        transition-property: height;
+        animation-name: heightAnimationRev;
+        animation-duration: 0.5s;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
       }
 
       > * {
@@ -215,7 +244,11 @@
       &--active,
       &:hover {
         &::after {
-          content: none;
+          animation-name: heightAnimation;
+          animation-duration: 0.5s;
+          animation-timing-function: ease-in-out;
+          animation-iteration-count: 1;
+          animation-fill-mode: forwards;
         }
 
         .hero {

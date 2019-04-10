@@ -168,6 +168,9 @@ class SurfSlider extends Slider {
         const tooltip = this.getActivePlaceInfoTooltip(this.payload[this.activeItem]);
         place.appendChild(icon);
         place.appendChild(tooltip);
+        setTimeout(() => {
+          tooltip.classList.add('animation__appear--on');
+        }, 250);
       } else {
         this.deactivatePlaceOnMap(place);
       }
@@ -236,6 +239,8 @@ class SurfSlider extends Slider {
   getActivePlaceInfoTooltip(placeData) {
     const tooltip = document.createElement('div');
     tooltip.classList.add('surf-place__tooltip');
+    tooltip.classList.add('animation');
+    tooltip.classList.add('animation__appear');
 
     const top = document.createElement('div');
     top.classList.add('top');
@@ -353,9 +358,13 @@ class SurfSlider extends Slider {
   setCurrentLocation() {
     const currentActiveItemData = this.payload[this.activeItem];
     const currentLocation = this.mainElement.querySelector('#surf-current-location');
+    currentLocation.classList.remove('animation__appear--on');
     currentLocation.innerHTML = `${currentActiveItemData.city} <span class="divider">|</span> ${
       currentActiveItemData.country
     }`;
+    setTimeout(() => {
+      currentLocation.classList.add('animation__appear--on');
+    }, 250);
   }
 }
 
