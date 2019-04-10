@@ -56,7 +56,7 @@ class SurfSlider extends Slider {
 
     setTimeout(() => {
       $elem.classList.add('animation__appear--on');
-    }, 500);
+    }, 100);
   }
   setCurrentAirlineParameters() {
     const currentAirlineData = this.payload[this.activeItem];

@@ -1,6 +1,5 @@
 import Slider from './Slider';
-// import isNaN from './isNaN';
-// import { isIE } from './checkBrowser';
+import isNaN from './isNaN';
 import payload from './sleepData';
 import declension from './declension';
 
@@ -27,15 +26,25 @@ class SleepSlider extends Slider {
   setCurrentResortDestination() {
     const currentData = this.payload[this.activeItem];
     const currentLocation = this.mainElement.querySelector('#sleep-location');
+    if (!isNaN(this.prevActiveItem)) {
+      currentLocation.classList.remove('animation__appear--on');
+    }
     currentLocation.innerHTML = `${currentData.resort} <span class="divider">|</span> ${
       currentData.country
     }`;
+
+    setTimeout(() => {
+      currentLocation.classList.add('animation__appear--on');
+    }, 500);
   }
   setCurrentResortRating() {
     const currentData = this.payload[this.activeItem];
     const $resortRating = this.mainElement.querySelector('#sleep__rating');
     const $ratingImgsWrapper = document.createElement('div');
     $ratingImgsWrapper.classList.add('sleep__rating-stars');
+    if (!isNaN(this.prevActiveItem)) {
+      $resortRating.classList.remove('animation__appear--on');
+    }
     switch (currentData.rating) {
       case 1:
         $resortRating.innerText = 'Run forest, run';
@@ -56,11 +65,17 @@ class SleepSlider extends Slider {
         $resortRating.innerText = "Don't know";
         break;
     }
+    setTimeout(() => {
+      $resortRating.classList.add('animation__appear--on');
+    }, 500);
+
     // eslint-disable-next-line no-plusplus
     for (let i = 0, len = currentData.rating; i < len; i++) {
       const star = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
       const starPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
       star.setAttribute('width', '22');
+      star.setAttribute('class', 'animation animation__fade-in-right');
+      star.setAttribute('style', `animation-delay:${i * 100}ms`);
       star.setAttribute('height', '22');
       star.setAttribute('viewBox', '0 0 22 22');
       star.setAttribute('fill', 'none');
@@ -73,13 +88,26 @@ class SleepSlider extends Slider {
       star.appendChild(starPath);
 
       $ratingImgsWrapper.appendChild(star);
+      setTimeout(() => {
+        star.setAttribute(
+          'class',
+          'animation animation__fade-in-right animation__fade-in-right--on',
+        );
+      }, 500);
     }
     $resortRating.appendChild($ratingImgsWrapper);
   }
   setCurrentLocationImage() {
     const currentData = this.payload[this.activeItem];
     const $img = this.mainElement.querySelector('#sleep__location-image');
+    if (!isNaN(this.prevActiveItem)) {
+      $img.classList.remove('animation__appear--on');
+    }
     $img.setAttribute('src', currentData.locationImage);
+
+    setTimeout(() => {
+      $img.classList.add('animation__appear--on');
+    }, 100);
   }
 
   setCurrentParameters() {
@@ -90,7 +118,13 @@ class SleepSlider extends Slider {
     }
 
     const $resort = this.mainElement.querySelector('#sleep__resort');
+    if (!isNaN(this.prevActiveItem)) {
+      $resort.classList.remove('animation__appear--on');
+    }
     $resort.innerHTML = `${currentData.resort} <br/> ${currentData.country}`;
+    setTimeout(() => {
+      $resort.classList.add('animation__appear--on');
+    }, 500);
 
     const $night = this.mainElement.querySelector('#sleep__night');
     const $guest = this.mainElement.querySelector('#sleep__guests');
@@ -172,8 +206,6 @@ class SleepSlider extends Slider {
   }
   // eslint-disable-next-line class-methods-use-this
   incrementGuest() {
-    // const currentData = this.payload[this.activeItem];
-
     if (window.localStorage.getItem('sleep-data')) {
       let data = JSON.parse(window.localStorage.getItem('sleep-data'));
       data = Object.assign(data, { guest: data.guest + 1 });
@@ -185,8 +217,6 @@ class SleepSlider extends Slider {
 
   // eslint-disable-next-line class-methods-use-this
   decrementGuest() {
-    // const currentData = this.payload[this.activeItem];
-
     if (window.localStorage.getItem('sleep-data')) {
       let data = JSON.parse(window.localStorage.getItem('sleep-data'));
       data = Object.assign(data, {
@@ -205,7 +235,6 @@ const sleep = () =>
 
     const slider = new SleepSlider($travel, payload);
     slider.init();
-    // slider.sayHi();
   });
 
 export default sleep;
