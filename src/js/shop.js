@@ -1,4 +1,5 @@
 import Slider from './Slider';
+import isNaN from './isNaN';
 import payload from './shopData';
 
 class ShopSlider extends Slider {
@@ -22,15 +23,27 @@ class ShopSlider extends Slider {
     const data = this.payload[this.activeItem];
 
     const name = this.mainElement.querySelector('#shop-item-name');
+    const price = this.mainElement.querySelector('#shop-item-price');
+
+    if (!isNaN(this.prevActiveItem)) {
+      name.classList.remove('animation__appear--on');
+      price.classList.remove('animation__appear--on');
+    }
+
     name.innerText = data.name;
+    setInterval(() => {
+      name.classList.add('animation__appear--on');
+    }, 250);
 
     this.setCurrentResortRating();
 
-    const price = this.mainElement.querySelector('#shop-item-price');
     const sup = data.price.toString().slice(-2);
 
     // eslint-disable-next-line no-bitwise
     price.innerHTML = `$ ${data.price ^ 0} <sup>${sup}</sup>`;
+    setInterval(() => {
+      price.classList.add('animation__appear--on');
+    }, 450);
   }
 
   setCurrentResortRating() {
@@ -50,6 +63,8 @@ class ShopSlider extends Slider {
       const starPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
       star.setAttribute('width', '22');
       star.setAttribute('height', '22');
+      star.setAttribute('class', 'animation animation__fade-in-right');
+      star.setAttribute('style', `animation-delay:${i * 100}ms`);
       star.setAttribute('viewBox', '0 0 22 22');
       star.setAttribute('fill', 'none');
 
@@ -61,6 +76,12 @@ class ShopSlider extends Slider {
       star.appendChild(starPath);
 
       $itemRating.appendChild(star);
+      setTimeout(() => {
+        star.setAttribute(
+          'class',
+          'animation animation__fade-in-right animation__fade-in-right--on',
+        );
+      }, 500);
     }
   }
 
@@ -136,10 +157,14 @@ class ShopSlider extends Slider {
             featureWrapper.setAttribute('data-is-open', 'true');
             featureWrapper.classList.add('open');
             featureBtn.innerText = 'minus';
+            featureBtn.parentNode.querySelector('p').classList.add('animation__fade-in-left--on');
           } else {
             featureWrapper.setAttribute('data-is-open', 'false');
             featureWrapper.classList.remove('open');
             featureBtn.innerText = 'plus';
+            featureBtn.parentNode
+              .querySelector('p')
+              .classList.remove('animation__fade-in-left--on');
           }
         },
         false,
@@ -147,6 +172,8 @@ class ShopSlider extends Slider {
 
       const featureText = document.createElement('p');
       featureText.classList.add('feature__text');
+      featureText.classList.add('animation');
+      featureText.classList.add('animation__fade-in-left');
       featureText.innerText = feature.title;
       featureWrapper.appendChild(featureText);
 

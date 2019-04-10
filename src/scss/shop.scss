@@ -34,6 +34,7 @@
     }
 
     &-name {
+      min-height: 80px;
       margin-top: 14px;
       font-size: $f-lg;
       font-weight: 800;
@@ -133,9 +134,13 @@
 
   .feature {
     position: absolute;
+    display: flex;
+    align-items: center;
+    min-height: 48px;
 
     &__button {
       position: relative;
+      flex-shrink: 0;
       width: 20px;
       height: 20px;
       font-size: 0;
@@ -169,16 +174,14 @@
     }
 
     &__text {
-      position: absolute;
-      top: 58%;
+      position: relative;
       left: 132px;
       display: none;
-      min-width: 255px;
+      min-width: 300px;
       font-size: $f-xx-md;
       font-weight: 800;
       line-height: 24px;
       text-transform: uppercase;
-      transform: translate(0, -50%);
 
       &::after {
         position: absolute;
