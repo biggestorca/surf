@@ -42,6 +42,17 @@
   }
 }
 
+@keyframes slideInRight {
+  from {
+    visibility: visible;
+    transform: translate3d(100%, 0, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 .animation {
   transition-delay: 0s;
   transition-timing-function: ease-in;
@@ -85,6 +96,18 @@
   &__fade-in-right {
     &--on {
       animation-name: fadeInRight;
+      animation-duration: 0.25s;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: 1;
+      animation-fill-mode: forwards;
+    }
+  }
+
+  &__slide-in-right {
+    visibility: visible;
+
+    &--on {
+      animation-name: slideInRight;
       animation-duration: 0.25s;
       animation-timing-function: ease-in-out;
       animation-iteration-count: 1;
