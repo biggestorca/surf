@@ -161,7 +161,6 @@ const shop = () =>
 
     const slider = new ShopSlider($shop, payload);
     slider.init();
-    slider.sayHi();
   });
 
 export default shop;
