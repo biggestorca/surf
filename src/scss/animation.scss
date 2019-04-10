@@ -84,6 +84,8 @@
   }
 
   &__fade-in-left {
+    opacity: 0;
+
     &--on {
       animation-name: fadeInLeft;
       animation-duration: 0.25s;
@@ -94,6 +96,8 @@
   }
 
   &__fade-in-right {
+    opacity: 0;
+
     &--on {
       animation-name: fadeInRight;
       animation-duration: 0.25s;
@@ -104,7 +108,7 @@
   }
 
   &__slide-in-right {
-    visibility: visible;
+    visibility: hidden;
 
     &--on {
       animation-name: slideInRight;
