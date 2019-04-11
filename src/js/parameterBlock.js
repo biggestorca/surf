@@ -18,6 +18,7 @@ const parameterBlock = () => {
         parameterName.style.minWidth = `${+computedNameStyle
           .getPropertyValue('width')
           .slice(0, -2) + 18}px`;
+        parameterName.style.top = computedNameStyle.getPropertyValue('width');
       });
     },
     false,

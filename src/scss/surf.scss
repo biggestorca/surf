@@ -129,7 +129,7 @@
 
       .info {
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         justify-content: space-between;
         width: 100%;
         margin-top: 30px;
@@ -139,6 +139,7 @@
           flex-direction: column;
           align-items: center;
           justify-content: space-between;
+          max-width: 33%;
 
           &__val {
             margin-top: 5px;
@@ -165,11 +166,17 @@
   }
 
   .card {
+    overflow: hidden;
+
     &__list {
       display: flex;
       align-items: center;
       padding-bottom: 112px;
-      overflow: hidden;
+      overflow: auto;
+
+      &--microsoft {
+        overflow: initial;
+      }
     }
 
     &__item {
@@ -207,31 +214,43 @@
         z-index: 3;
       }
 
-      &:nth-child(even) {
+      &:not(:nth-child(4)):nth-child(even) {
         min-width: 400px;
         max-width: 400px;
       }
 
-      &--malibu-beach {
+      &:nth-child(4n + 1) {
         top: 55px;
+      }
+
+      &:nth-child(4n + 2) {
+        top: 23px;
+        left: -40px;
+      }
+
+      &:nth-child(4n + 3) {
+        top: 112px;
+        left: -90px;
+      }
+
+      &:nth-child(4n + 4) {
+        top: 23px;
+        left: -130px;
+      }
+
+      &--malibu-beach {
         background: url('/img/malibu_beach.jpg') 0 0 no-repeat;
       }
 
       &--airlie-beach {
-        top: 23px;
-        left: -40px;
         background: url('/img/airlie_beach.jpg') 0 0 no-repeat;
       }
 
       &--cloud-nine {
-        top: 112px;
-        left: -90px;
         background: url('/img/cloud_nine.jpg') 0 0 no-repeat;
       }
 
       &--vieux-boucau {
-        top: 23px;
-        left: -130px;
         background: url('/img/vieux_boucau.jpg') 0 0 no-repeat;
       }
 

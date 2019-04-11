@@ -73,7 +73,7 @@
     align-items: flex-end;
     justify-content: space-between;
     height: 100%;
-    padding: 30px 80px 34px 0;
+    padding: 30px 80px 14px 0;
 
     &__manipulation {
       z-index: 3;
@@ -144,7 +144,8 @@
 
     &__location-wrapper {
       display: flex;
-      align-items: center;
+      flex-wrap: wrap;
+      align-items: flex-start;
       justify-content: flex-end;
     }
 
@@ -155,12 +156,10 @@
       justify-content: space-between;
       width: 200px;
       padding-top: 3px;
+      margin-bottom: 20px;
+      margin-left: 40px;
       cursor: pointer;
       border-top: 4px solid #fff;
-
-      &:not(:last-child) {
-        margin-right: 40px;
-      }
 
       &:hover {
         border-top: 4px solid $secondary;
@@ -171,6 +170,7 @@
       }
 
       &-count {
+        margin-right: 5px;
         font-size: $f-xx-md;
         font-weight: 800;
         line-height: 34px;

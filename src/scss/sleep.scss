@@ -28,6 +28,8 @@
     padding-left: 134px;
 
     &-name {
+      position: relative;
+      z-index: 5;
       display: flex;
       align-items: center;
       justify-content: flex-start;
@@ -113,6 +115,6 @@
 
   &__hero {
     width: 290px;
-    margin: 47px auto 0;
+    margin: 27px auto 0;
   }
 }

@@ -1,4 +1,5 @@
 import Slider from './Slider';
+import { isIE, isEDGE } from './checkBrowser';
 
 const payload = [
   {
@@ -100,6 +101,11 @@ class SurfSlider extends Slider {
   generateCards() {
     // генерация карточек
     const cardList = this.mainElement.querySelector('#card__list');
+
+    if (isIE() || (isEDGE() && this.payload.length > 4)) {
+      cardList.classList.add('card__list--microsoft');
+    }
+
     this.payload.forEach((surfItem) => {
       const card = this.generateCard(surfItem);
       card.addEventListener(
