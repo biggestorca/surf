@@ -1,6 +1,9 @@
 // временная
 .section {
+  position: relative;
+  z-index: 2;
   padding-top: 40px;
+  background: $primary;
 
   &__title {
     position: relative;

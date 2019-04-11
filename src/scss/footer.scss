@@ -1,6 +1,9 @@
 .footer {
-  margin-top: 273px;
+  position: relative;
+  z-index: 2;
+  padding-top: 273px;
   text-align: center;
+  background: $primary;
 
   &__hero {
     width: 180px;
@@ -8,8 +11,8 @@
   }
 
   &__copyright {
-    margin-top: 27px;
-    margin-bottom: 34px;
+    padding-top: 27px;
+    padding-bottom: 34px;
     font-size: $f-x-sm;
     font-weight: 300;
     line-height: 14px;

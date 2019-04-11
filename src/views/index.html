@@ -7,7 +7,14 @@
     require('../components/nav-travel.html'), sleep:
     require('../components/nav-sleep.html'), shop:
     require('../components/nav-shop.html'), } }) %>
-
+    <img
+      src="/img/low/Surf_The_Wave.jpg"
+      srcset="/img/low/Surf_The_Wave.jpg 2x"
+      data-src="/img/Surf_The_Wave.jpg"
+      data-srcset="/img/retina/Surf_The_Wave@2x.jpg 2x"
+      alt="bg"
+      class="first-screen__bg lazy"
+    />
     <div class="slider">
       <div class="slider__manipulation">
         <button class="prev">prev</button>
@@ -15,9 +22,9 @@
       </div>
       <img
         src="/img/cost-line.png"
+        srcset="/img/retina/cost-line@2x.png 2x"
         alt="cost"
-        class="slider__cost-line lazy"
-        data-src="/img/cost-line.png"
+        class="slider__cost-line"
       />
       <div class="slider__path">
         <svg
