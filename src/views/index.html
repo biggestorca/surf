@@ -1,6 +1,7 @@
 <% var tempParameters = require('../template-parameters.js') %>
 <%=_.template(require('../components/head.html'))(tempParameters.index) %>
 <main>
+  <%= _.template(require('../components/preloader.html'))() %>
   <section class="first-screen" id="first-screen">
     <%= _.template(require('../components/header.html'))({ nav: { surf:
     require('../components/nav-surf.html'), travel:
@@ -118,7 +119,7 @@
 
         <svg
           id="svg-path-north-shore"
-          class="svg-path svg-path-north-shore"
+          class="svg-path svg-path-north-shore svg-path-active"
           width="364"
           height="205"
           viewBox="0 0 364 205"

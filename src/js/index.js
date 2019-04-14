@@ -1,5 +1,6 @@
 import 'whatwg-fetch';
 import 'babel-polyfill';
+import disablePreloader from './disablePreloader';
 import registerServiceWorker from './registerServiceWorker';
 import lazyImagesLoader from './lazyImages';
 import smoothScrollToAnchor from './smoothScrollToAnchor';
@@ -18,12 +19,15 @@ ES6Promise.polyfill();
 
 const env = process.env.NODE_ENV;
 
+lazyImagesLoader();
+
 if (env === 'production') {
   registerServiceWorker();
 } else {
   console.log(`NODE_ENV is: '${env}', servise worker DISABLED.`);
 }
-lazyImagesLoader();
+
+disablePreloader();
 smoothScrollToAnchor();
 parameterBlock();
 firstScreen();

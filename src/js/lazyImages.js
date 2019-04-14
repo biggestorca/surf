@@ -1,6 +1,6 @@
 const Io = require('intersection-observer');
 
-const lazyImagesLoader = () =>
+const lazyImagesLoader = async () =>
   document.addEventListener('DOMContentLoaded', () => {
     const lazyImages = Array.prototype.slice.call(document.querySelectorAll('img.lazy'));
 
@@ -48,5 +48,4 @@ const lazyImagesLoader = () =>
       });
     }
   });
-
 export default lazyImagesLoader;
