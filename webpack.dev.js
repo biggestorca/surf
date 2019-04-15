@@ -4,13 +4,17 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const generateHtmlPlugins = require('./generateHtmlPlugins.js');
+const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 
 const htmlPlugins = generateHtmlPlugins('./src/views');
 
 module.exports = {
   devtool: 'source-map',
   mode: 'development',
-  entry: ['./src/js/index.js', './src/scss/style.scss'],
+  entry: {
+    app: './src/js/app.js',
+    index: ['./src/js/index.js', './src/scss/style.scss'],
+  },
   output: {
     path: path.resolve(__dirname, 'public'),
     filename: 'js/[name].[chunkhash].js',
@@ -126,5 +130,17 @@ module.exports = {
         to: path.resolve(__dirname, 'public/'),
       },
     ]),
-  ].concat(htmlPlugins),
+  ].concat([
+    ...htmlPlugins,
+    new ScriptExtHtmlWebpackPlugin({
+      defaultAttribute: 'defer',
+      custom: [
+        {
+          test: /\.js$/,
+          attribute: 'type',
+          value: '',
+        },
+      ],
+    }),
+  ]),
 };

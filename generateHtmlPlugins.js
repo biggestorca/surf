@@ -6,7 +6,7 @@ const templateParameters = require('./src/template-parameters.js');
 function generateHtmlPlugins(templateDir) {
   const templateFiles = fs.readdirSync(path.resolve(__dirname, templateDir));
 
-  return templateFiles.map(item => {
+  return templateFiles.map((item) => {
     const parts = item.split('.');
     const name = parts[0];
     const extension = parts[1];

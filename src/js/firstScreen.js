@@ -2,6 +2,7 @@ import Slider from './Slider';
 import isNaN from './isNaN';
 import { isIE, isEDGE } from './checkBrowser';
 import payload from './firstScreenData';
+import headerDatetime from './headerDatetime';
 
 const computedHeight = (element) => {
   const height = window.innerHeight;
@@ -128,7 +129,7 @@ class FirstScreenSlider extends Slider {
 
       setTimeout(() => {
         this.activateDestination();
-      }, 500);
+      }, 750);
     }
   }
 
@@ -144,6 +145,9 @@ class FirstScreenSlider extends Slider {
         oldSvg.setAttribute('class', classList.join(' '));
       } else {
         oldSvg.classList.remove('svg-path-active');
+        if (!isEDGE()) {
+          oldSvg.querySelector('path').removeChild(oldSvg.querySelector('animate'));
+        }
       }
     }
   }
@@ -254,6 +258,7 @@ const firstScreen = () =>
     if (isIE()) {
       $firstScreen.querySelector('.slider__content').classList.add('slider__content--ie');
     }
+    headerDatetime();
   });
 
 export default firstScreen;
