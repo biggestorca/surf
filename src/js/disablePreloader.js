@@ -1,5 +1,5 @@
 const disablePreloader = () =>
-  window.addEventListener('load', () => {
+  window.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       const loader = document.querySelector('.preloader');
       loader.parentNode.removeChild(loader);

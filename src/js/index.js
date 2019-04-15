@@ -13,9 +13,8 @@ import footerDate from './footerDate';
 const env = process.env.NODE_ENV;
 
 smoothScrollToAnchor();
-parameterBlock();
-
 surf();
+parameterBlock();
 travel();
 sleep();
 shop();
